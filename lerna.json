@@ -1,0 +1,5 @@
+{
+    "packages": ["client", "server"],
+    "useWorkspaces": false,
+    "version": "independent"
+}
