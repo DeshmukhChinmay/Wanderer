@@ -6,7 +6,9 @@
     "scripts": {
         "precommit": "lint-staged",
         "start": "node index.js",
-        "server": "nodemon index.js"
+        "server": "nodemon index.js",
+        "client": "npm --prefix client run start",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
     },
     "author": "GROUP 5",
     "license": "ISC",
