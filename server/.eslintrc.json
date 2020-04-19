@@ -18,13 +18,5 @@
         "space-before-function-paren": "off",
         "semi": "off",
         "comma-dangle": "off"
-    },
-    "overrides": [
-        {
-            "files": ["**/*.test.js"],
-            "rules": {
-                "no-undef": "off"
-            }
-        }
-    ]
+    }
 }

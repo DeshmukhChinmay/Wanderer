@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "SOFTENG 750 Project - Group 5",
   "scripts": {
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "server": "npm --prefix server run server",
+    "client": "npm --prefix client run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Group 5",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^5.1.0",
     "husky": "^4.2.5",
     "lerna": "^3.20.2"
   },
