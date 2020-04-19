@@ -2,18 +2,10 @@
   "name": "group-5-cyan-camel",
   "version": "1.0.0",
   "description": "SOFTENG 750 Project - Group 5",
-  "scripts": {
-    "postinstall": "lerna bootstrap"
-  },
   "author": "Group 5",
   "license": "ISC",
   "devDependencies": {
     "husky": "^4.2.5",
     "lerna": "^3.20.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lerna run --concurrency 1 --stream precommit --since HEAD"
-    }
   }
 }
