@@ -47,7 +47,7 @@
         "prettier": "^2.0.4"
     },
     "lint-staged": {
-        "*.+(js|jsx)": "eslint -c \".eslintrc.json\" --fix --debug",
+        "*.+(js|jsx)": "eslint -c \".eslintrc.json\" --fix",
         "*.+(html|css|json|md)": "prettier --write"
     }
 }
