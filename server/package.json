@@ -27,7 +27,7 @@
         "prettier": "^2.0.4"
     },
     "lint-staged": {
-        "*.js": "eslint -c \".eslinctrc.json\" --fix",
+        "*.js": "eslint -c \".eslintrc.json\" --fix",
         "*.+(json|md)": "prettier --write"
     }
 }
