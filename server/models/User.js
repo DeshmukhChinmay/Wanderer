@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    email: {
+    googleId: {
         type: String,
-        required: true,
-        unique: true,
     },
-    id: {
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -17,4 +15,4 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("User", userSchema);
+mongoose.model("users", userSchema);
