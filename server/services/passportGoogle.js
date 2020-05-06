@@ -42,6 +42,7 @@ passport.use(
                     googleId: profile.id,
                     email: profile._json.email,
                     name: profile._json.name,
+                    profilePic: profile._json.picture,
                 }).save();
 
                 done(null, user);
