@@ -1,13 +1,31 @@
-import React from "react";
-import HomePage from "./components/pages/homepage/HomePage";
-import "./App.css";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
-function App() {
+import { useDispatch } from "react-redux";
+import { fetchUser } from "./actions/userActions";
+import Header from "./components/Header";
+import HomePage from "./components/pages/homepage/HomePage";
+
+const Login = () => <HomePage></HomePage>;
+
+const App = () => {
+    const dispatch = useDispatch();
+
+    // Fetch the user data once the app is ready to the loaded
+    useEffect(() => {
+        dispatch(fetchUser());
+    });
+
     return (
-        <div className="App">
-            <HomePage></HomePage>
+        <div>
+            <BrowserRouter>
+                <div>
+                    <Header />
+                    <Route exact path="/" component={Login}></Route>
+                </div>
+            </BrowserRouter>
         </div>
     );
-}
+};
 
 export default App;
