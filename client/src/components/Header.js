@@ -44,7 +44,7 @@ const Header = () => {
     const user = useSelector((state) => state.user);
 
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Toolbar>
                 <Grid container spacing={20} alignItems="center" justify="space-between">
                     <Grid item>
