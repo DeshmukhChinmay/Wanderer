@@ -49,7 +49,7 @@ const Header = () => {
                 <Grid container spacing={20} alignItems="center" justify="space-between">
                     <Grid item>
                         <Typography variant="h6" color="inherit">
-                            Website Name
+                            Wanderer
                         </Typography>
                     </Grid>
                     <Grid item>{renderContent(user)}</Grid>

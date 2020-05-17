@@ -14,6 +14,7 @@ const App = () => {
     // Fetch the user data once the app is ready to the loaded
     useEffect(() => {
         dispatch(fetchUser());
+        document.title = "Wanderer";
     });
 
     return (
