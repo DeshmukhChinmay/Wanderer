@@ -107,6 +107,10 @@ function JourneyDetails() {
                         disableToolbar
                         variant="inline"
                         format="dd/MM/yyyy"
+                        autoOk={true}
+                        minDate={new Date()}
+                        minDateMessage="Date must be after todays date"
+                        invalidDateMessage="Date must be after todays date"
                         margin="normal"
                         id="start-date"
                         label="Start Date"
@@ -120,6 +124,10 @@ function JourneyDetails() {
                         disableToolbar
                         variant="inline"
                         format="dd/MM/yyyy"
+                        autoOk={true}
+                        minDate={startDate}
+                        minDateMessage="Date must be after todays date"
+                        invalidDateMessage="Date must be after todays date"
                         margin="normal"
                         id="end-date"
                         label="End Date"
