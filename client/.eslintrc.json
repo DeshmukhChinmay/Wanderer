@@ -24,6 +24,7 @@
         "semi": "off",
         "comma-dangle": "off",
         "quote-props": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "react/display-name": "off"
     }
 }

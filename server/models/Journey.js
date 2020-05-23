@@ -5,8 +5,13 @@ const LocationSchema = require("./Location");
 const journeySchema = new Schema({
     name: String,
     notes: String,
+    startDate: String,
+    endDate: String,
     locations: [LocationSchema],
-    active: Boolean,
+    active: {
+        type: Boolean,
+        default: true,
+    },
     _user: {
         type: Schema.Types.ObjectId,
         ref: "user",

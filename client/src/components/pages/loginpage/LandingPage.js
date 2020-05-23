@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     large: {
         display: "grid",
         gridTemplateRows: "100vh 100vh 100vh",
-        width: "98vw",
+        width: "100vw",
         height: "300vh",
         verticalAlign: "middle",
         backgroundImage: 'url("./background.jpg")',

@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 import { Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 // Render the right section on the appbar depending on whether
 // the user is logged in or not
@@ -44,12 +45,17 @@ const Header = () => {
     const user = useSelector((state) => state.user);
 
     return (
-        <AppBar position="fixed">
+        <AppBar position="sticky">
             <Toolbar>
                 <Grid container spacing={10} alignItems="center" justify="space-between">
                     <Grid item>
                         <Typography variant="h6" color="inherit">
-                            Wanderer
+                            <Link
+                                to={user ? "/home" : "/"}
+                                style={{ textDecoration: "none", color: "white", fontSize: "5vh" }}
+                            >
+                                Wanderer
+                            </Link>
                         </Typography>
                     </Grid>
                     <Grid item>{renderContent(user)}</Grid>

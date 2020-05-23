@@ -5,7 +5,7 @@ const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 const applicatonKeys = require("./config/applicationKeys");
 require("./models/User");
-require("./models/Journey")
+require("./models/Journey");
 require("./services/passportGoogle");
 
 const MAX_COOKIE_AGE = 24 * 60 * 60 * 1000;
