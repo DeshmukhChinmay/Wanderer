@@ -33,10 +33,10 @@ const MyMapComponent = compose(
     <GoogleMap
         defaultZoom={15}
         defaultCenter={{
-            lat: props.locations[props.selectedLocation].lat,
-            lng: props.locations[props.selectedLocation].lng,
+            lat: props.locations[props.selectedLocation].latitude,
+            lng: props.locations[props.selectedLocation].longitude,
         }}
-        center={{ lat: props.locations[props.selectedLocation].lat, lng: props.locations[props.selectedLocation].lng }}
+        center={{ lat: props.locations[props.selectedLocation].latitude, lng: props.locations[props.selectedLocation].longitude }}
     >
         {props.locations.map((location, index) => {
             return (
