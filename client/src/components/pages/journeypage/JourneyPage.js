@@ -44,7 +44,7 @@ const MyMapComponent = compose(
                     key={index}
                     clickable={true}
                     label={location.name}
-                    position={{ lat: location.lat, lng: location.lng }}
+                    position={{ lat: location.latitude, lng: location.longitude }}
                 />
             );
         })}
