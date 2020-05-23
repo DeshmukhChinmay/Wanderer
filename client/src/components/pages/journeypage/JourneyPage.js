@@ -36,16 +36,14 @@ const MyMapComponent = compose(
             lat: props.locations[props.selectedLocation].latitude,
             lng: props.locations[props.selectedLocation].longitude,
         }}
-        center={{ lat: props.locations[props.selectedLocation].latitude, lng: props.locations[props.selectedLocation].longitude }}
+        center={{
+            lat: props.locations[props.selectedLocation].latitude,
+            lng: props.locations[props.selectedLocation].longitude,
+        }}
     >
         {props.locations.map((location, index) => {
             return (
-                <Marker
-                    key={index}
-                    clickable={true}
-                    label={location.name}
-                    position={{ lat: location.latitude, lng: location.longitude }}
-                />
+                <Marker key={index} clickable={true} position={{ lat: location.latitude, lng: location.longitude }} />
             );
         })}
     </GoogleMap>
