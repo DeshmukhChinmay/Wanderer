@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { fetchActiveJourneys, fetchInactiveJourneys } from "../../../actions/journeyActions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,16 +73,13 @@ export default function PopularView() {
                         </Typography>
                     </CardActionArea>
                     <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom variant="p" component="p">
+                        <Typography gutterBottom>
                             {place.description}
                         </Typography>
                     </CardContent>
                     <CardActions className={classes.cardButtons}>
                         <Button size="small" color="primary">
                             {`Details`}
-                        </Button>
-                        <Button size="small" color="primary">
-                            {`Bookmark`}
                         </Button>
                     </CardActions>
                 </Card>

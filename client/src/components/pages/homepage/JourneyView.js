@@ -7,11 +7,15 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import {Link} from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "60%",
         height: "100%",
+        marginTop: 70,
         margin: 20,
         display: "inline-block",
     },
@@ -35,51 +39,55 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const tileData = [
-    {
-        img: testImage,
-        title: "Europe Holiday",
-        date: "21/07/2020",
-    },
-    {
-        img: testImage,
-        title: "Spain Retreat",
-        date: "31/11/2021",
-    },
-];
-
 /**
  * This component will have journeys viewed as cards, and will also allow
  * the user to add and delete journeys.
  */
-export default function JourneyView() {
+export default function JourneyView(props) {
     const classes = useStyles();
-    return (
+    if(props.journeys === null || props.journeys.length === 0){
+      return (
         <div className={classes.root}>
             <Typography className={classes.title} variant="h3">
                 Planned Journeys
             </Typography>
-            {tileData.map((tile, index) => (
-                <Card className={classes.card} key={index}>
-                    <CardActionArea className={classes.cardActionArea}>
-                        <CardMedia className={classes.media} image={tile.img} />
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {tile.title}
-                        </Typography>
-                        <Typography gutterBottom variant="p" component="p">
-                            {tile.date}
-                        </Typography>
-                    </CardActionArea>
-                    <CardActions className={classes.cardButtons}>
-                        <Button size="small" color="primary">
-                            {`View`}
-                        </Button>
-                        <Button size="small" color="secondary">
-                            {`Delete`}
-                        </Button>
-                    </CardActions>
-                </Card>
-            ))}
+            <Typography>
+                Uh oh! It looks like you don't have any journeys yet!
+            </Typography>
         </div>
-    );
+      );
+    } else {
+      return (
+          <div className={classes.root}>
+              <Typography className={classes.title} variant="h3">
+                  Planned Journeys
+              </Typography>
+              {props.journeys.map((journey, index) => (
+                  <Card className={classes.card} key={index}>
+                      <CardActionArea className={classes.cardActionArea}>
+                          <CardMedia className={classes.media} image={testImage} />
+                          <Typography gutterBottom variant="h5" component="h2" align="center">
+                          {journey.name}
+                          </Typography>
+                      </CardActionArea>
+                      <CardActions className={classes.cardButtons}>
+                          <Button size="small" color="primary" component={Link} to={"journey-view/"+journey._id}>
+                              {`View`}
+                          </Button>
+                          <Button size="small" color="secondary" onClick={()=>{
+                              console.log("Trying to toggle "+journey._id);
+                              axios.post("/journey/make-inactive/"+journey._id).then(function (res){
+                                console.log(res);
+                                window.location.reload(false);
+                              });
+                            }}>
+                              {`Mark as Complete`}
+                          </Button>
+                      </CardActions>
+                  </Card>
+              ))}
+          </div>
+      );
+    }
+
 }

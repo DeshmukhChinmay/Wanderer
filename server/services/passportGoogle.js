@@ -6,14 +6,14 @@ const applicationKeys = require("./../config/applicationKeys");
 const User = mongoose.model("users");
 
 passport.serializeUser((user, done) => {
-    console.log("In serialize");
+    // console.log("In serialize");
     done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-    console.log("In deserialize");
+    // console.log("In deserialize");
     const user = await User.findById(id);
-    console.log(user);
+    // console.log(user);
     done(null, user);
 });
 
@@ -26,18 +26,18 @@ passport.use(
             proxy: true,
         },
         async (accessToken, refreshToken, profile, done) => {
-            console.log("In passport");
-            console.log("profile: ", profile);
+            // console.log("In passport");
+            // console.log("profile: ", profile);
 
             const existingUser = await User.findOne({ email: profile._json.email });
 
-            console.log(`Existing user: ${existingUser}`);
+            // console.log(`Existing user: ${existingUser}`);
 
             if (existingUser) {
-                console.log("USER ALREADY EXISTS");
+                // console.log("USER ALREADY EXISTS");
                 done(null, existingUser);
             } else {
-                console.log("NOT AN EXISTING USER");
+                // console.log("NOT AN EXISTING USER");
                 const user = await new User({
                     googleId: profile.id,
                     email: profile._json.email,
@@ -48,7 +48,7 @@ passport.use(
                 done(null, user);
             }
 
-            console.log("AUTHENTICATION FINISHED");
+            // console.log("AUTHENTICATION FINISHED");
         },
     ),
 );

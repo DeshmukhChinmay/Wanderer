@@ -46,7 +46,7 @@ const Header = () => {
     return (
         <AppBar position="fixed">
             <Toolbar>
-                <Grid container spacing={20} alignItems="center" justify="space-between">
+                <Grid container spacing={10} alignItems="center" justify="space-between">
                     <Grid item>
                         <Typography variant="h6" color="inherit">
                             Wanderer

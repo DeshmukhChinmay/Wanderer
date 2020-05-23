@@ -6,6 +6,7 @@ const journeySchema = new Schema({
     name: String,
     notes: String,
     locations: [LocationSchema],
+    active: Boolean,
     _user: {
         type: Schema.Types.ObjectId,
         ref: "user",

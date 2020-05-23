@@ -6,9 +6,7 @@ import { fetchUser } from "./actions/userActions";
 import Header from "./components/Header";
 import HomePage from "./components/pages/homepage/HomePage";
 import LandingPage from "./components/pages/loginpage/LandingPage";
-
-const Login = () => <HomePage></HomePage>;
-const Landing = () => <LandingPage></LandingPage>;
+import JourneyPage from "./components/pages/journeypage/JourneyPage"
 
 const App = () => {
     const dispatch = useDispatch();
@@ -24,8 +22,9 @@ const App = () => {
             <BrowserRouter>
                 <div>
                     <Header />
-                    <Route exact path="/" component={Landing}></Route>
-                    <Route exact path="/home" component={Login}></Route>
+                    <Route exact path="/" component={LandingPage}></Route>
+                    <Route exact path="/home" component={HomePage}></Route>
+                    <Route path="/journey-view/:id" component={JourneyPage}></Route>
                 </div>
             </BrowserRouter>
         </div>
