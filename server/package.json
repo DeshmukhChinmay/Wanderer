@@ -3,8 +3,11 @@
     "version": "1.0.0",
     "description": "Server for WebApp created for SOFTENG750 Project",
     "main": "index.js",
+    "engines": {
+        "node": "14.2.0",
+        "npm": "6.14.4"
+    },
     "scripts": {
-        "precommit": "lint-staged",
         "start": "node index.js",
         "server": "nodemon index.js"
     },
@@ -29,11 +32,6 @@
         "eslint-plugin-prettier": "^3.1.3",
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.0.1",
-        "lint-staged": "^10.1.5",
         "prettier": "^2.0.4"
-    },
-    "lint-staged": {
-        "*.js": "eslint -c \".eslintrc.json\" --fix",
-        "*.+(json|md)": "prettier --write"
     }
 }

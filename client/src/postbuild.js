@@ -1,5 +1,15 @@
-// CONFIGURE THIS FILE LATER
+const ncp = require('ncp').ncp;
 
-// GET THE BUILD FOLDER AND COPY IT TO THE SERVER
+const source = "./build";
+const destination = "./../server/build/";
+
+ncp.limit = 16;
+
+ncp(source, destination, function (err) {
+    if (err) {
+        return console.error(err);
+    }
+    console.log("done!");
+});
 
 console.log("FINISHED POST BUILD");
