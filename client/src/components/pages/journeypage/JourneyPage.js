@@ -80,7 +80,13 @@ class JourneyPage extends React.Component {
             .then(() => {
                 // Get all the weather data for the journey's locations
                 this.state.journey.locations.map((location, index) => {
-                    axios.get("/api/weather").then((res) => {
+                    console.log("Getting weather for location:");
+                    console.log(location);
+                    axios({
+                        method: "get",
+                        url: "/api/weather/" + location.latitude + "/" + location.longitude,
+                    }).then((res) => {
+                        console.log(res);
                         this.setState({
                             weather: [...this.state.weather, res.data],
                         });

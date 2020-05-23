@@ -8,14 +8,19 @@ const GOOGLE_PLACES_API_URL = "https://maps.googleapis.com/maps/api/place";
 const GOOGLE_PLACES_API_KEY = applicationKeys.googlePlacesAPIKey;
 
 module.exports = (app) => {
-    app.get("/api/weather", async (req, res) => {
+    app.get("/api/weather/:latitude/:longitude", async (req, res) => {
         console.log("This is getting called!!!!!!");
 
         // OpenWeatherAPI endpoint - api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={your api key}
 
+        console.log(req.params);
+
         // Change this with the co-ords from the request
-        const latitude = -36.84846;
-        const longitude = 174.763336;
+        const latitude = req.params.latitude;
+        const longitude = req.params.longitude;
+
+        console.log(latitude);
+        console.log(longitude);
 
         // Extract the relevant data from the weather response
         const weatherResponse = await axios.get(
