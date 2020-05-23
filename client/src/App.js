@@ -12,7 +12,6 @@ import JourneyPage from "./components/pages/journeypage/JourneyPage";
 const Home = () => <HomePage></HomePage>;
 const Landing = () => <LandingPage></LandingPage>;
 const CreateJourney = () => <JourneyNew></JourneyNew>;
-const JourneyView = () => <JourneyPage></JourneyPage>;
 
 const App = () => {
     const dispatch = useDispatch();
@@ -32,8 +31,8 @@ const App = () => {
                         <Route exact path="/" component={Landing}></Route>
                         <Route exact path="/home" component={Home}></Route>
                         <Route exact path="/journey/new" component={CreateJourney}></Route>
-                        <Route path="/journey-view/:id" component={JourneyView}></Route>
-                    </Switch>                    
+                        <Route path="/journey-view/:id" component={JourneyPage}></Route>
+                    </Switch>
                 </div>
             </BrowserRouter>
         </div>
