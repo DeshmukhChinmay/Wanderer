@@ -19,7 +19,7 @@ const styles = (theme) => ({
         columnGap: "20px",
         padding: "10px 20px",
     },
-    loading:{
+    loading: {
         display: "grid",
         height: "80vh",
         width: "100%",
@@ -45,11 +45,11 @@ const styles = (theme) => ({
         overflow: "auto",
         maxHeight: "75vh",
     },
-    notes:{
+    notes: {
         border: "1px solid #ccc",
         width: "90%",
         height: "100%",
-    }
+    },
 });
 
 /**
@@ -59,7 +59,7 @@ const MyMapComponent = compose(
     withProps({
         googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
         loadingElement: <div style={{ height: `100%` }} />,
-        containerElement: <div style={{ height: "100%", width: "100%"}} />,
+        containerElement: <div style={{ height: "100%", width: "100%" }} />,
         mapElement: <div style={{ height: `100%` }} />,
     }),
     withScriptjs,
@@ -98,11 +98,20 @@ class JourneyPage extends React.Component {
             cardHeights: [220],
         };
     }
-    addToCardHeight(){
-        this.setState({ 
-            cardHeights: [...this.state.cardHeights, 220]
+
+    addToCardHeight() {
+        this.setState({
+            cardHeights: [...this.state.cardHeights, 220],
         });
     }
+
+    getJourneyDates() {
+        let string = `Journey Start Date: 
+        ${this.state.journey.startDate.substring(0,10,)} 
+        Journey End Date: ${this.state.journey.endDate.substring(0, 10)}`;
+        return string;
+    }
+
     componentDidMount() {
         const id = this.props.match.params.id;
 
@@ -135,12 +144,8 @@ class JourneyPage extends React.Component {
         if (this.state.journey === null || this.state.weather.length === 0) {
             return (
                 <div className={classes.loading}>
-                    <div className={"sweet-loading", classes.center}>
-                        <MoonLoader
-                            size={75}
-                            color={"#36C0D7"}
-                            loading={this.state.loading}
-                        />
+                    <div className={("sweet-loading", classes.center)}>
+                        <MoonLoader size={75} color={"#36C0D7"} loading={this.state.loading} />
                     </div>
                 </div>
             );
@@ -151,10 +156,7 @@ class JourneyPage extends React.Component {
                         <Typography variant="h4" align="center">
                             {this.state.journey.name}
                         </Typography>
-                        <Typography align="center">
-                            {this.state.journey.startDate.substring(0, 10)} -{" "}
-                            {this.state.journey.endDate.substring(0, 10)}
-                        </Typography>
+                        <Typography align="center">{this.getJourneyDates()}</Typography>
                         <MyMapComponent
                             locations={this.state.journey.locations}
                             selectedLocation={this.state.selectedLocation}
@@ -162,7 +164,7 @@ class JourneyPage extends React.Component {
                         <Typography variant="h4" align="center">
                             Notes
                         </Typography>
-                        <Typography align="center" className={classes.notes}>
+                        <Typography align="left" className={classes.notes} style={{ paddingLeft: "10px" }}>
                             {this.state.journey.notes}
                         </Typography>
                     </div>
@@ -173,12 +175,12 @@ class JourneyPage extends React.Component {
                         <div className={classes.locations}>
                             {this.state.journey.locations.map((location, index) => {
                                 return (
-                                    <Card key={index} style={{ backgroundColor: "#E8F5FF", marginTop: 20}}>
+                                    <Card key={index} style={{ backgroundColor: "#E8F5FF", marginTop: 20 }}>
                                         <CardActionArea
                                             style={{ paddingTop: 10 }}
                                             onClick={() => {
-                                                this.setState({ selectedLocation: index});
-                                                if (this.state.cardHeights[index] === 220){
+                                                this.setState({ selectedLocation: index });
+                                                if (this.state.cardHeights[index] === 220) {
                                                     this.state.cardHeights[index] = 270;
                                                 } else {
                                                     this.state.cardHeights[index] = 220;
@@ -188,7 +190,14 @@ class JourneyPage extends React.Component {
                                             <Typography align="center" variant="h5">
                                                 {location.name}
                                             </Typography>
-                                            <div align="center" style={{ height: this.state.cardHeights[index], width: "46vw", display: "inline-flex" }}>
+                                            <div
+                                                align="center"
+                                                style={{
+                                                    height: this.state.cardHeights[index],
+                                                    width: "46vw",
+                                                    display: "inline-flex",
+                                                }}
+                                            >
                                                 <DayCard reading={this.state.weather[index]} day={0}></DayCard>
                                                 <DayCard reading={this.state.weather[index]} day={1}></DayCard>
                                                 <DayCard reading={this.state.weather[index]} day={2}></DayCard>
@@ -223,7 +232,7 @@ function DayCard(props) {
     const imgURL = `http://openweathermap.org/img/wn/${reading.weather[0].icon}@2x.png`;
 
     return (
-        <Card style={{ width: 200, margin: "20px 10px" , backgroundColor: "#ffffff" }}>
+        <Card style={{ width: 200, margin: "20px 10px", backgroundColor: "#ffffff" }}>
             <h3 className="card-title">{moment(newDate).format("dddd")}</h3>
             <p className="text-muted">{moment(newDate).format("MMMM Do, h:mm a")}</p>
             <img src={imgURL} alt="Weather Icon"></img>

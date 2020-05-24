@@ -51,7 +51,7 @@ export default function HomePage(props) {
                     height: "100vh",
                 }}
             >
-                <Grid container spacing={2} justify="center">
+                <Grid container spacing={1} justify="center">
                     <JourneyView journeys={[]}></JourneyView>
                     <PopularView></PopularView>
                     <HistoryView journeys={[]}></HistoryView>
@@ -74,7 +74,7 @@ export default function HomePage(props) {
                     height: "100vh",
                 }}
             >
-                <Grid container spacing={2} justify="center">
+                <Grid container spacing={1} justify="center">
                     <JourneyView journeys={state.journey.activeJourneys}></JourneyView>
                     <PopularView></PopularView>
                     <HistoryView journeys={state.journey.inactiveJourneys}></HistoryView>

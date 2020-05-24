@@ -15,27 +15,29 @@ import getRandomImage from "./ImageHelper";
  */
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "60%",
+        width: 750,
         height: "100%",
-        marginTop: 70,
         margin: 20,
         display: "inline-block",
         align: "center",
     },
     title: {
-        backgroundColor: "pink",
+        backgroundColor: "navy",
+        color: "white",
+        textDecoration: "underline",
+        padding: "10px",
     },
     card: {
         float: "left",
         height: "auto",
-        width: 270,
+        width: 250,
         margin: 5,
     },
     cardActionArea: {
         height: 200,
     },
     cardButtons: {
-        height: 25,
+        height: 35,
     },
     media: {
         height: 140,
@@ -61,7 +63,7 @@ export default function HistoryView(props) {
         return (
             <div className={classes.root}>
                 <Typography className={classes.title} variant="h3">
-                    Planned Journeys
+                    Past Journeys
                 </Typography>
                 {props.journeys.map((journey, index) => (
                     <Card className={classes.card} key={index}>

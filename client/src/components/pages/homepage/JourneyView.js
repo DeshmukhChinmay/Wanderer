@@ -15,14 +15,17 @@ import getRandomImage from "./ImageHelper";
  */
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "60%",
+        width: 780,
         height: "100%",
-        marginTop: 70,
+        marginTop: 30,
         margin: 20,
         display: "inline-block",
     },
     title: {
-        backgroundColor: "pink",
+        backgroundColor: "navy",
+        color: "white",
+        textDecoration: "underline",
+        padding: "10px",
     },
     card: {
         float: "left",
