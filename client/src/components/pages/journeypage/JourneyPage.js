@@ -109,6 +109,9 @@ class JourneyPage extends React.Component {
                     <Typography variant="h3" align="center">
                         {this.state.journey.name}
                     </Typography>
+                    <Typography align="center">
+                        From {this.state.journey.startDate.substring(0, 10)} to {this.state.journey.endDate.substring(0, 10)}
+                    </Typography>
                     <MyMapComponent
                         locations={this.state.journey.locations}
                         selectedLocation={this.state.selectedLocation}
