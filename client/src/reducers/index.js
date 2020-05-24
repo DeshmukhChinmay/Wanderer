@@ -6,5 +6,5 @@ import journeyReducer from "./journeyReducer";
 export default combineReducers({
     user: userReducer,
     location: locationReducer,
-    journey: journeyReducer
+    journey: journeyReducer,
 });

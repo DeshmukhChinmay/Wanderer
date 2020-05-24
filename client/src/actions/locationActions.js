@@ -1,19 +1,19 @@
 import { ADD_LOCATION, REMOVE_LOCATION } from "./types";
 
+/**
+ * Action for adding a location object to the redux store state.
+ */
 export function addLocation(location) {
-    console.log('IN LOCATION ACTION');
-    console.log(location);
-
     return {
         type: ADD_LOCATION,
         location,
     };
 }
 
+/**
+ * Action for removing a location object from the redux store state.
+ */
 export function removeLocation(location) {
-    console.log('IN LOCATION ACTION');
-    console.log(location);
-
     return {
         type: REMOVE_LOCATION,
         location,

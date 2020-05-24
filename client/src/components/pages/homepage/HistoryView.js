@@ -1,5 +1,6 @@
 import React from "react";
-import testImage from "./images/testJourney.jpg";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -7,9 +8,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import testImage from "./images/testJourney.jpg";
 
+/**
+ * Custom CSS styles for the component.
+ */
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "60%",
@@ -77,7 +80,6 @@ export default function HistoryView(props) {
                                 color="secondary"
                                 onClick={() => {
                                     axios.delete("/journey/" + journey._id).then(function (res) {
-                                        console.log(res);
                                         window.location.reload(false);
                                     });
                                 }}
@@ -88,9 +90,7 @@ export default function HistoryView(props) {
                                 size="small"
                                 color="secondary"
                                 onClick={() => {
-                                    console.log("Trying to toggle " + journey._id);
                                     axios.post("/journey/make-active/" + journey._id).then(function (res) {
-                                        console.log(res);
                                         window.location.reload(false);
                                     });
                                 }}

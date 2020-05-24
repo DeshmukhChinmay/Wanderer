@@ -1,5 +1,6 @@
 import React from "react";
-import testImage from "./images/testJourney.jpg";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -7,9 +8,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import testImage from "./images/testJourney.jpg";
 
+/**
+ * Custom CSS styles for the component.
+ */
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "60%",
@@ -39,8 +42,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- * This component will have journeys viewed as cards, and will also allow
- * the user to add and delete journeys.
+ * This component will have journeys viewed as cards. The user can change the
+ * status (Active/Inactive) of the journey on the cards. The journeys can be deleted
+ * from the cards as well.
  */
 export default function JourneyView(props) {
     const classes = useStyles();
@@ -75,9 +79,7 @@ export default function JourneyView(props) {
                                 size="small"
                                 color="secondary"
                                 onClick={() => {
-                                    console.log("Trying to toggle " + journey._id);
                                     axios.post("/journey/make-inactive/" + journey._id).then(function (res) {
-                                        console.log(res);
                                         window.location.reload(false);
                                     });
                                 }}

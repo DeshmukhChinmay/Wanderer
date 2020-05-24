@@ -3,6 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import backgroundImage from "./images/Background.jpg"
 
+/**
+ * Custom CSS styles for the component.
+ */
 const useStyles = makeStyles((theme) => ({
     large: {
         display: "grid",
@@ -37,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+/**
+ * Component for rendering the landing page for the web application.
+ */
 const LandingPage = () => {
     const classes = useStyles();
     return (

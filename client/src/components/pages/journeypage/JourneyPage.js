@@ -8,6 +8,9 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
 
+/**
+ * Custom CSS styles for the component.
+ */
 const styles = (theme) => ({
     root: {
         textAlign: "center",
@@ -20,6 +23,9 @@ const styles = (theme) => ({
     },
 });
 
+/**
+ * Component for rendering Google Maps with a location
+ */
 const MyMapComponent = compose(
     withProps({
         googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
@@ -50,8 +56,7 @@ const MyMapComponent = compose(
 ));
 
 /**
- * This component is the Journey page of the app. This will take one journey
- * allow the user to display details of that journey, and edit the journey.
+ * Component for giving a summary of a journey.
  */
 class JourneyPage extends React.Component {
     constructor(props) {
@@ -62,7 +67,6 @@ class JourneyPage extends React.Component {
             isMarkerShown: false,
             selectedLocation: 0,
         };
-        console.log(this.state);
     }
 
     componentDidMount() {
@@ -72,21 +76,17 @@ class JourneyPage extends React.Component {
         axios
             .get("/journey/" + id)
             .then((res) => {
-                console.log(res.data);
                 this.setState({
                     journey: res.data,
                 });
             })
             .then(() => {
                 // Get all the weather data for the journey's locations
-                this.state.journey.locations.map((location, index) => {
-                    console.log("Getting weather for location:");
-                    console.log(location);
+                this.state.journey.locations.forEach((location) => {
                     axios({
                         method: "get",
                         url: "/api/weather/" + location.latitude + "/" + location.longitude,
                     }).then((res) => {
-                        console.log(res);
                         this.setState({
                             weather: [...this.state.weather, res.data],
                         });
@@ -110,7 +110,8 @@ class JourneyPage extends React.Component {
                         {this.state.journey.name}
                     </Typography>
                     <Typography align="center">
-                        From {this.state.journey.startDate.substring(0, 10)} to {this.state.journey.endDate.substring(0, 10)}
+                        From {this.state.journey.startDate.substring(0, 10)} to{" "}
+                        {this.state.journey.endDate.substring(0, 10)}
                     </Typography>
                     <MyMapComponent
                         locations={this.state.journey.locations}
@@ -153,6 +154,9 @@ class JourneyPage extends React.Component {
     }
 }
 
+/**
+ * Component for rendering the weather data retrieved from the server
+ */
 function DayCard(props) {
     if (props.reading === undefined) {
         return <br />;
@@ -165,12 +169,11 @@ function DayCard(props) {
 
     const imgURL = `http://openweathermap.org/img/wn/${reading.weather[0].icon}@2x.png`;
 
-    const classes = withStyles(styles);
     return (
         <Card style={{ width: 200, margin: 20, backgroundColor: "#ffffff" }}>
             <h3 className="card-title">{moment(newDate).format("dddd")}</h3>
             <p className="text-muted">{moment(newDate).format("MMMM Do, h:mm a")}</p>
-            <img src={imgURL}></img>
+            <img src={imgURL} alt="Weather Icon"></img>
             <h2>{Math.round(reading.main.temp - 273.15)} °C</h2>
             <div className="card-body">
                 <p className="card-text">{reading.weather[0].description}</p>

@@ -1,5 +1,8 @@
 import "date-fns";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
@@ -9,21 +12,21 @@ import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import ClearIcon from "@material-ui/icons/Clear";
 import ListSubheader from "@material-ui/core/ListSubheader";
-import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import DateFnsUtils from "@date-io/date-fns";
 import { removeLocation } from "./../../../actions/locationActions";
-import axios from "axios";
 
+/**
+ * This component will allow the user to create a new journey.
+ */
 function JourneyDetails() {
     const locations = useSelector((store) => store.location);
     const dispatch = useDispatch();
-
     const history = useHistory();
 
+    // Custom CSS styles for the component
     const useStyles = makeStyles((theme) => ({
         container: {
             display: "grid",
@@ -67,6 +70,8 @@ function JourneyDetails() {
         setNotes(event.target.value);
     };
 
+    // Sending a POST request to the server to create a new
+    // journey in the database
     const clickCompleteJourney = async () => {
         const parameters = {
             name: name,
@@ -75,7 +80,6 @@ function JourneyDetails() {
             endDate: endDate,
             locations: locations,
         };
-        console.log(parameters);
         await axios({
             method: "post",
             url: "/journey/create",

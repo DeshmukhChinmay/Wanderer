@@ -10,6 +10,7 @@ require("./services/passportGoogle");
 
 const MAX_COOKIE_AGE = 24 * 60 * 60 * 1000;
 
+// MongoDB server initialisation
 mongoose.connection.on("open", function (ref) {
     console.log("Connected to mongoDB server!");
 });
@@ -21,6 +22,7 @@ mongoose.connection.on("error", function (err) {
 
 mongoose.connect(applicatonKeys.mongoURI, { useNewUrlParser: true });
 
+// Express server initialization
 const app = express();
 
 app.use(
@@ -31,7 +33,6 @@ app.use(
 );
 
 app.use(bodyParser.json());
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -40,6 +41,7 @@ require("./routes/userRoutes")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/journeyRoutes")(app);
 
+// Serve the static files to the client in production environment
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("build"));
     const path = require("path");

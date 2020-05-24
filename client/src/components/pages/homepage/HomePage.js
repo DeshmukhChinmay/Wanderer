@@ -1,15 +1,17 @@
 import React, { useEffect, forwardRef } from "react";
-import JourneyView from "./JourneyView";
-import PopularView from "./PopularView";
-import HistoryView from "./HistoryView";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { makeStyles, Grid, Tooltip } from "@material-ui/core";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import JourneyView from "./JourneyView";
+import PopularView from "./PopularView";
+import HistoryView from "./HistoryView";
 import { fetchActiveJourneys, fetchInactiveJourneys } from "../../../actions/journeyActions";
 
+/**
+ * Custom CSS styles for the component.
+ */
 const useStyles = makeStyles((theme) => ({
     fab: {
         position: "fixed",
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CreateJourneyLink = forwardRef((props, ref) => <Link ref={ref} to="/journey/new" {...props} />);
+const CreateJourneyLink = forwardRef((props, ref) => <Link ref={ref} to="/journey-create" {...props} />);
 
 /**
  * This component is the home page of the webapp. This is only accessible

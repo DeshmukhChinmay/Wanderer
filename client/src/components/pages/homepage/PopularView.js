@@ -1,5 +1,4 @@
 import React from "react";
-import testImage from "./images/testPopular.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -8,7 +7,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import testImage from "./images/testPopular.jpg";
 
+/**
+ * Custom CSS styles for the component.
+ */
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "60%",
@@ -55,8 +58,7 @@ const placeData = [
 ];
 
 /**
- * This component will have popular destinations and places as cards,
- * which the user can interact with.
+ * This component will show the recommended destinations to the user.
  */
 export default function PopularView() {
     const classes = useStyles();
@@ -72,9 +74,7 @@ export default function PopularView() {
                         </Typography>
                     </CardActionArea>
                     <CardContent className={classes.cardContent}>
-                        <Typography gutterBottom>
-                            {place.description}
-                        </Typography>
+                        <Typography gutterBottom>{place.description}</Typography>
                     </CardContent>
                     <CardActions className={classes.cardButtons}>
                         <Button size="small" color="primary">
