@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import backgroundImage from "./images/Background.jpg"
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         width: "100vw",
         height: "300vh",
         verticalAlign: "middle",
-        backgroundImage: 'url("./background.jpg")',
+        backgroundImage: 'url(' + backgroundImage + ')',
         backgroundSize: "100% 50%",
         backgroundRepeat: "no-repeat",
         color: "white",
