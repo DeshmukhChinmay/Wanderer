@@ -8,7 +8,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import testImage from "./images/testJourney.jpg";
+import getRandomImage from "./ImageHelper";
 
 /**
  * Custom CSS styles for the component.
@@ -66,7 +66,7 @@ export default function HistoryView(props) {
                 {props.journeys.map((journey, index) => (
                     <Card className={classes.card} key={index}>
                         <CardActionArea className={classes.cardActionArea}>
-                            <CardMedia className={classes.media} image={testImage} />
+                            <CardMedia className={classes.media} image={getRandomImage()} />
                             <Typography gutterBottom variant="h5" component="h2" align="center">
                                 {journey.name}
                             </Typography>

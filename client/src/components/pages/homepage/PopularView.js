@@ -7,7 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import testImage from "./images/testPopular.jpg";
+import getRandomImage from "./ImageHelper";
 
 /**
  * Custom CSS styles for the component.
@@ -44,13 +44,13 @@ const useStyles = makeStyles((theme) => ({
 
 const placeData = [
     {
-        img: testImage,
+        img: getRandomImage(),
         title: "Wellington",
         description:
             "Wellington, the capital of New Zealand, sits near the North Island’s southernmost point on the Cook Strait.",
     },
     {
-        img: testImage,
+        img: getRandomImage(),
         title: "Auckland",
         description:
             "Auckland, based around 2 large harbours, is a major city in the north of New Zealand’s North Island.",
