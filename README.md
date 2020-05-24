@@ -8,6 +8,8 @@ The documentation for the web application is available on our 'Wiki' page.
 
 The web application has been deployed on Heroku. Click on the following link to access the application: [Wanderer](https://blooming-tundra-46644.herokuapp.com/)
 
+"Man your app transported me to an alternate dimension" - An Anonymous Reviewer
+
 ## Installation Instructions to run the website locally
 
 1) Clone the repository onto your local machine.
