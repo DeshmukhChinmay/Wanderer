@@ -56,7 +56,7 @@ const placeData = {
         img: testImage,
         title: "Country",
         description:
-            "The entire south auckland experience in one city. Fish and Chips, burger king everything you need.",
+            "The entire South Auckland experience in one city. Fish and Chips, Burger King everything you need.",
     },
     London: {
         img: testImage,
@@ -68,13 +68,13 @@ const placeData = {
         img: testImage,
         title: "Country",
         description:
-            "It really is just like the movies. Town Square is an experience you'll never forget. And don't forget the pizzas!",
+            "It really is just like the movies. Times Square is an experience you'll never forget. And don't forget the pizzas!",
     },
     Sydney: {
         img: testImage,
         title: "Country",
         description:
-            "It's auckland, but better! A very diverse city with plenty of tourist attractions such as the opera house.",
+            "It's Auckland, but better! A very diverse city with plenty of tourist attractions such as the opera house.",
     },
     Paris: {
         img: testImage,
