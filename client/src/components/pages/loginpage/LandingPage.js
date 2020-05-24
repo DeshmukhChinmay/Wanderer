@@ -1,42 +1,54 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import backgroundImage from "./images/Background.jpg"
+import backgroundImage from "./images/Background.jpg";
+import journeyCreation from "./images/JourneyCreation.PNG";
 
 /**
  * Custom CSS styles for the component.
  */
 const useStyles = makeStyles((theme) => ({
+
+    background: {
+        position: "absolute",
+        top: 0,
+        width: "100%",
+        height: "100%",
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+        backgroundImage: 'url(' + backgroundImage + ')',
+    },
     large: {
         display: "grid",
-        gridTemplateRows: "100vh 100vh 100vh",
-        width: "100vw",
-        height: "300vh",
+        gridTemplateRows: "40% 60%",
+        width: "100%",
+        height: "100%",
         verticalAlign: "middle",
-        backgroundImage: 'url(' + backgroundImage + ')',
-        backgroundSize: "100% 50%",
+        backgroundSize: "100% 100%",
         backgroundRepeat: "no-repeat",
+        backgroundColor: "rgba(0,0,0,0.3)",
         color: "white",
+        position: "absolute",
+        top: 0,
     },
 
     center: {
-        alignSelf: "center",
+        placeSelf: "center",
+    },
+
+    image: {
+        placeSelf: "center",
+        width: "40%",
+        height: "auto",
     },
 
     bottom: {
         alignSelf: "end",
     },
 
-    features: {
+    featuresContainer: {
         display: "grid",
-        gridTemplateRows: "25% auto 10%",
-        background: "rgb(88,176,255) radial-gradient(circle, rgba(88,176,255,1) 0%, rgba(46,91,186,1) 89%)",
-    },
-
-    features2: {
-        display: "grid",
-        gridTemplateRows: "25% auto 10%",
-        background: "rgb(119,123,133) radial-gradient(circle, rgba(119,123,133,1) 0%, rgba(84,40,40,1) 89%)",
+        gridTemplateRows: "20% 80%",
     },
 }));
 
@@ -46,24 +58,16 @@ const useStyles = makeStyles((theme) => ({
 const LandingPage = () => {
     const classes = useStyles();
     return (
-        <div className={classes.large}>
-            <Typography className={classes.center} variant="h2" align="center">
-                Welcome to Wanderer
-            </Typography>
-            <div className={classes.features}>
-                <Typography className={classes.bottom} variant="h3" align="center">
-                    Plan your journeys
+        <div className={classes.background}>
+            <div className={classes.large}>
+                <Typography className={classes.bottom} variant="h2" align="center">
+                    Welcome to Wanderer
                 </Typography>
-                <div className={classes.center} align="center">
-                    images go here
-                </div>
-            </div>
-            <div className={classes.features2}>
-                <Typography className={classes.bottom} variant="h3" align="center">
-                    See popular destinations
-                </Typography>
-                <div className={classes.center} align="center">
-                    images go here
+                <div className={classes.featuresContainer}>   
+                    <Typography className={classes.center} variant="h4" align="center">
+                        Plan your next journey today
+                    </Typography>
+                    <img className={classes.image} src={journeyCreation}></img>
                 </div>
             </div>
         </div>
