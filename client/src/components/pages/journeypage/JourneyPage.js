@@ -7,20 +7,49 @@ import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
+import MoonLoader from "react-spinners/MoonLoader";
 
 /**
  * Custom CSS styles for the component.
  */
 const styles = (theme) => ({
     root: {
-        textAlign: "center",
-        width: "60%",
-        height: "100%",
-        margin: 20,
-        marginLeft: "20%",
-        marginTop: 70,
-        display: "inline-block",
+        display: "grid",
+        gridTemplateColumns: "50% 50%",
+        columnGap: "20px",
+        padding: "10px 20px",
     },
+    loading:{
+        display: "grid",
+        height: "80vh",
+        width: "100%",
+    },
+    center: {
+        placeSelf: "center",
+    },
+    leftContainer: {
+        height: "85vh",
+        maxHeight: "85vh",
+        display: "grid",
+        gridTemplateRows: "1fr 20px 8fr 1fr 2fr",
+        placeItems: "center",
+        rowGap: "5px",
+    },
+    rightContainer: {
+        display: "grid",
+        gridTemplateRows: "1fr 10fr",
+        placeItems: "center",
+        overflow: "hidden",
+    },
+    locations: {
+        overflow: "auto",
+        maxHeight: "75vh",
+    },
+    notes:{
+        border: "1px solid #ccc",
+        width: "90%",
+        height: "100%",
+    }
 });
 
 /**
@@ -30,7 +59,7 @@ const MyMapComponent = compose(
     withProps({
         googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
         loadingElement: <div style={{ height: `100%` }} />,
-        containerElement: <div style={{ height: `400px` }} />,
+        containerElement: <div style={{ height: "100%", width: "100%"}} />,
         mapElement: <div style={{ height: `100%` }} />,
     }),
     withScriptjs,
@@ -66,9 +95,14 @@ class JourneyPage extends React.Component {
             weather: [],
             isMarkerShown: false,
             selectedLocation: 0,
+            cardHeights: [220],
         };
     }
-
+    addToCardHeight(){
+        this.setState({ 
+            cardHeights: [...this.state.cardHeights, 220]
+        });
+    }
     componentDidMount() {
         const id = this.props.match.params.id;
 
@@ -91,6 +125,7 @@ class JourneyPage extends React.Component {
                             weather: [...this.state.weather, res.data],
                         });
                     });
+                    this.addToCardHeight();
                 });
             });
     }
@@ -99,55 +134,73 @@ class JourneyPage extends React.Component {
         const { classes } = this.props;
         if (this.state.journey === null || this.state.weather.length === 0) {
             return (
-                <div className={classes.root}>
-                    <h1>Loading...</h1>
+                <div className={classes.loading}>
+                    <div className={"sweet-loading", classes.center}>
+                        <MoonLoader
+                            size={75}
+                            color={"#36C0D7"}
+                            loading={this.state.loading}
+                        />
+                    </div>
                 </div>
             );
         } else {
             return (
                 <div className={classes.root}>
-                    <Typography variant="h3" align="center">
-                        {this.state.journey.name}
-                    </Typography>
-                    <Typography align="center">
-                        From {this.state.journey.startDate.substring(0, 10)} to{" "}
-                        {this.state.journey.endDate.substring(0, 10)}
-                    </Typography>
-                    <MyMapComponent
-                        locations={this.state.journey.locations}
-                        selectedLocation={this.state.selectedLocation}
-                    />
-                    <br />
-                    <Typography variant="h3" align="center">
-                        Locations
-                    </Typography>
-                    {this.state.journey.locations.map((location, index) => {
-                        return (
-                            <Card key={index} style={{ backgroundColor: "#ffffe6", marginTop: 20 }}>
-                                <CardActionArea
-                                    style={{ paddingTop: 10 }}
-                                    onClick={() => {
-                                        this.setState({ selectedLocation: index });
-                                    }}
-                                >
-                                    <Typography align="center" variant="h5">
-                                        {location.name}
-                                    </Typography>
-                                    <div align="center" style={{ height: 275, width: 800, display: "inline-flex" }}>
-                                        <DayCard reading={this.state.weather[index]} day={0}></DayCard>
-                                        <DayCard reading={this.state.weather[index]} day={1}></DayCard>
-                                        <DayCard reading={this.state.weather[index]} day={2}></DayCard>
-                                        <DayCard reading={this.state.weather[index]} day={3}></DayCard>
-                                        <DayCard reading={this.state.weather[index]} day={4}></DayCard>
-                                    </div>
-                                </CardActionArea>
-                            </Card>
-                        );
-                    })}
-                    <Typography variant="h3" align="center">
-                        Notes
-                    </Typography>
-                    <Typography align="center">{this.state.journey.notes}</Typography>
+                    <div className={classes.leftContainer}>
+                        <Typography variant="h4" align="center">
+                            {this.state.journey.name}
+                        </Typography>
+                        <Typography align="center">
+                            {this.state.journey.startDate.substring(0, 10)} -{" "}
+                            {this.state.journey.endDate.substring(0, 10)}
+                        </Typography>
+                        <MyMapComponent
+                            locations={this.state.journey.locations}
+                            selectedLocation={this.state.selectedLocation}
+                        />
+                        <Typography variant="h4" align="center">
+                            Notes
+                        </Typography>
+                        <Typography align="center" className={classes.notes}>
+                            {this.state.journey.notes}
+                        </Typography>
+                    </div>
+                    <div className={classes.rightContainer}>
+                        <Typography variant="h4" align="center">
+                            Locations
+                        </Typography>
+                        <div className={classes.locations}>
+                            {this.state.journey.locations.map((location, index) => {
+                                return (
+                                    <Card key={index} style={{ backgroundColor: "#E8F5FF", marginTop: 20}}>
+                                        <CardActionArea
+                                            style={{ paddingTop: 10 }}
+                                            onClick={() => {
+                                                this.setState({ selectedLocation: index});
+                                                if (this.state.cardHeights[index] === 220){
+                                                    this.state.cardHeights[index] = 270;
+                                                } else {
+                                                    this.state.cardHeights[index] = 220;
+                                                }
+                                            }}
+                                        >
+                                            <Typography align="center" variant="h5">
+                                                {location.name}
+                                            </Typography>
+                                            <div align="center" style={{ height: this.state.cardHeights[index], width: "46vw", display: "inline-flex" }}>
+                                                <DayCard reading={this.state.weather[index]} day={0}></DayCard>
+                                                <DayCard reading={this.state.weather[index]} day={1}></DayCard>
+                                                <DayCard reading={this.state.weather[index]} day={2}></DayCard>
+                                                <DayCard reading={this.state.weather[index]} day={3}></DayCard>
+                                                <DayCard reading={this.state.weather[index]} day={4}></DayCard>
+                                            </div>
+                                        </CardActionArea>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             );
         }
@@ -170,7 +223,7 @@ function DayCard(props) {
     const imgURL = `http://openweathermap.org/img/wn/${reading.weather[0].icon}@2x.png`;
 
     return (
-        <Card style={{ width: 200, margin: 20, backgroundColor: "#ffffff" }}>
+        <Card style={{ width: 200, margin: "20px 10px" , backgroundColor: "#ffffff" }}>
             <h3 className="card-title">{moment(newDate).format("dddd")}</h3>
             <p className="text-muted">{moment(newDate).format("MMMM Do, h:mm a")}</p>
             <img src={imgURL} alt="Weather Icon"></img>

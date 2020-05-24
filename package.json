@@ -13,5 +13,8 @@
   "devDependencies": {
     "concurrently": "^5.1.0",
     "lerna": "^3.20.2"
+  },
+  "dependencies": {
+    "react-spinners": "^0.8.3"
   }
 }
